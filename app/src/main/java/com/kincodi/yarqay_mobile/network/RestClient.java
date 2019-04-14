@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
 
-    private static final String REST_API_URL = "http://192.168.0.10:3000/";
+    private static final String REST_API_URL = "http://192.168.0.13:3001/";
     private static Retrofit s_retrofit;
     static {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -29,7 +29,8 @@ public class RestClient {
                             @Override
                             public Response intercept(@NonNull Interceptor.Chain chain) throws IOException {
                                 Request request = chain.request().newBuilder()
-                                       // .addHeader("Authorization", ConfigSharedPreferences.restoreToken())
+                                      //  .addHeader("Authorization", ConfigSharedPreferences.restoreToken())
+                                        //.addHeader("Authorization", "Authorization")
                                         .build();
                                 return chain.proceed(request);
                             }

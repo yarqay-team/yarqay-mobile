@@ -10,24 +10,20 @@ import android.widget.Button;
 
 import com.kincodi.yarqay_mobile.R;
 import com.kincodi.yarqay_mobile.presentation.ui.adapter.SlideViewPageAdapter;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager vp;
-    private SlideViewPageAdapter adapter;
-    Button btnNext;
-    Button btnSkip;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @BindView(R.id.btn_next) Button btnNext;
+    @BindView(R.id.view_pager) ViewPager vp;
+    @BindView(R.id.btn_skip) Button btnSkip;
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        vp = findViewById(R.id.view_pager);
-        btnNext = findViewById(R.id.btn_next);
-        btnSkip = findViewById(R.id.btn_skip);
-        adapter = new SlideViewPageAdapter(this);
+        ButterKnife.bind(this);
+
+        SlideViewPageAdapter adapter = new SlideViewPageAdapter(this);
         vp.setAdapter(adapter);
-
-
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,12 +39,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public int getItem(int i) {
         return vp.getCurrentItem() + i;
-
     }
     public void nextActivity() {
         Intent i = new Intent(this, MapActivity2.class);
         startActivity(i);
     }
-
 }
 
